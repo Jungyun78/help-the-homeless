@@ -12,12 +12,16 @@ As a Hackathon project in PYGHACK 2019, our website offers recommendations of an
 ## Motivation
 We are a team of four UIUC sophomore students who are determined to apply technology to make an impact in our community. We have noticed that homelessness is a huge problem in the Urbana-Champaign area. Participating in PYGHACK 2019, we had the opportunity to analyze Champaign County homeless datasets offered by CU at Home, a local organization that supports homeless people, and develop a website that direct people in need of living spaces to the most recommended shelters as a solution.
 
+
 ## Functionality
 ### Submit a Form about Personal Conditions to Find the Best Fitted Shelters for You
 
 ### Text/Call C-U at Home for Emergency with Your Device
 
 ### Donate to C-U at Home if You Want to Support Local Community
+
+### View Data Analysis Charts of Local Homeless Survey
+We included interesting statistical observations and interpretations generated from Point-in-Time Survey conducted by Champaign County in 2018. Sample data distributed three different behavioural patterns. Along with 
 
 ###
 
