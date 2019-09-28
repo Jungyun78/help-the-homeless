@@ -22,6 +22,7 @@
   </head>
   <body>
     <div id="map"></div>
+    <a href="sms:2173773430">Emergency contact for C-U @ Homes</a>
     <br>
     <p id="error">jj </p>
     <form id="homelessform" name="homelessform" onsubmit="placePoints();">
@@ -47,14 +48,11 @@
         // addMarker(center_loc);
         
         getData();
-        document.getElementById("error").innerHTML = "done";
-        // for (var i = 0; i < array.length(); i++) {
-          document.getElementById("error").innerHTML = array[0].latitude;
-          var location = {lat: array[0].latitude, lng: array[0].longitude};
+        for (var i = 0; i < array.length; ++i) {
+          var location = {lat: array[i].latitude, lng: array[i].longitude};
           addMarker(location);
           
-        // }
-        
+        }
         
         // Adds a marker at the center of the map.
         
