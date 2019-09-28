@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map, infoWindow;
+      var array = [];
+      var markers = [];
+
+      function initMap() {
+        var center_loc = {lat: 40.11828, lng: -88.2626};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: center_loc
+        });
+        // document.getElementById('error').innerHTML="done"; 
+        // addMarker(center_loc);
+        
+        getData();
+        for (var i = 0; i < array.length; ++i) {
+          var location = {lat: array[i].latitude, lng: array[i].longitude};
+          addMarker(location);
+          
+        }
+        
+        // Adds a marker at the center of the map.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow = new google.maps.InfoWindow;
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('You are here');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+      
+      function placePoints() {
+       deleteMarkers();
+       var ifVeteran = document.getElementsByName("veteran").checked;
+       var ifChildren = document.getElementsByName("children").checked;
+       for (var i = 0; i < array.length; ++i) {
+        if (ifVeteran && ifChildren && (array[i].Veteransw/Children != 0)) {
+          var location = {lat: array[i].latitude, lng: array[i].longitude};
+          addMarker(location);
+         }
+         if (ifVeteran) {
+          if (array[i].Veteransw/Children != 0 || array[i].Veteransw/oChildren != 0) {
+          var location = {lat: array[i].latitude, lng: array[i].longitude};
+          addMarker(location);
+         }
+         } 
+        }
+        
+      }
+
+      // Adds a marker to the map and push to the array.
+      function addMarker(location) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+        markers.push(marker);
+      }
+
+      // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+
+      // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
+      function getData() {
+    
+        var str = ['{"Year":2019,"Proj.Type":"ES","OrganizationName":"1st.UnitedMethodistChurch","ProjectName":"Austin\'sPlace","latitude":40.11828,"longitude":-88.2626,"Address":"210WChurchSt,Champaign,IL61820","Veteranw/Children":"","Veteranw/oChildren":"","Year-RoundBeds":0,"TotalSeasonalBeds":10,"PITCount":3,"TotalBeds":10,"UtilizationRate":"30%"}','{"Year":2019,"Proj.Type":"ES","OrganizationName":"ChampaignCountyRegionalPlanningCommission","ProjectName":"EmergencyShelterforFamilies","latitude":40.10642,"longitude":-88.18688,"Address":"1776EWashingtonSt,Urbana,IL61802","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":26,"TotalSeasonalBeds":0,"PITCount":30,"TotalBeds":26,"UtilizationRate":"115%"}','{"Year":2019,"Proj.Type":"ES","OrganizationName":"CourageConnection","ProjectName":"DVShelter-Emergency","latitude":40.11877,"longitude":-88.23114,"Address":"508EChurchSt,Champaign,IL61820","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":25,"TotalSeasonalBeds":0,"PITCount":19,"TotalBeds":25,"UtilizationRate":"76%"}','{"Year":2019,"Proj.Type":"ES","OrganizationName":"CrisisNursery","ProjectName":"SafeChildrenProgram","latitude":40.11911,"longitude":-88.22693,"Address":"1309WHillSt,Urbana,IL61801","Veteranw/Children":"","Veteranw/oChildren":"","Year-RoundBeds":4,"TotalSeasonalBeds":"","PITCount":2,"TotalBeds":4,"UtilizationRate":"50%"}','{"Year":2019,"Proj.Type":"ES","OrganizationName":"C-UMen\'sShelter","ProjectName":"Men\'sEmergencyShelter","latitude":40.12024,"longitude":-88.23974,"Address":"70E.WashingtonStreet,Champaign","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":0,"TotalSeasonalBeds":50,"PITCount":49,"TotalBeds":50,"UtilizationRate":"98%"}','{"Year":2019,"Proj.Type":"OPH","OrganizationName":"CourageConnection","ProjectName":"PresbyHouse","latitude":40.11877,"longitude":-88.23114,"Address":"508EChurchSt,Champaign,IL61820","Veteranw/Children":"","Veteranw/oChildren":0,"Year-RoundBeds":4,"TotalSeasonalBeds":"","PITCount":3,"TotalBeds":4,"UtilizationRate":"75%"}','{"Year":2019,"Proj.Type":"PSH","OrganizationName":"ChampaignCountyRegionalPlanningCommission","ProjectName":"PermanentSupportiveHousing-PhysicalDisabilities","latitude":40.10642,"longitude":-88.18688,"Address":"1776EWashingtonSt,Urbana,IL61802","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":4,"TotalSeasonalBeds":"","PITCount":2,"TotalBeds":4,"UtilizationRate":"50%"}','{"Year":2019,"Proj.Type":"PSH","OrganizationName":"ChampaignCountyRegionalPlanningCommission","ProjectName":"Shelter+CareI","latitude":40.10642,"longitude":-88.18688,"Address":"1776EWashingtonSt,Urbana,IL61802","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":42,"TotalSeasonalBeds":"","PITCount":36,"TotalBeds":42,"UtilizationRate":"86%"}','{"Year":2019,"Proj.Type":"PSH","OrganizationName":"ChampaignCountyRegionalPlanningCommission","ProjectName":"Shelter+CareIII","latitude":40.10642,"longitude":-88.18688,"Address":"1776EWashingtonSt,Urbana,IL61802","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":9,"TotalSeasonalBeds":"","PITCount":12,"TotalBeds":9,"UtilizationRate":"133%"}','{"Year":2019,"Proj.Type":"PSH","OrganizationName":"HousingAuthorityofChampaignCounty","ProjectName":"VASH-ChampaignCounty","latitude":40.13788,"longitude":-88.23868,"Address":"2008NMarketSt,Champaign,IL61822","Veteranw/Children":22,"Veteranw/oChildren":"","Year-RoundBeds":22,"TotalSeasonalBeds":"","PITCount":22,"TotalBeds":22,"UtilizationRate":"100%"}','{"Year":2019,"Proj.Type":"PSH","OrganizationName":"Rosecrance","ProjectName":"PHACT","latitude":40.12398,"longitude":-88.24145,"Address":"801NWalnutSt,Champaign,IL61820","Veteranw/Children":"","Veteranw/oChildren":0,"Year-RoundBeds":11,"TotalSeasonalBeds":"","PITCount":11,"TotalBeds":11,"UtilizationRate":"100%"}','{"Year":2019,"Proj.Type":"RRH","OrganizationName":"SalvationArmy","ProjectName":"SSVF-RRH","latitude":40.12054,"longitude":-88.2575,"Address":"502NProspectAve,Champaign,IL61820","Veteranw/Children":4,"Veteranw/oChildren":12,"Year-RoundBeds":27,"TotalSeasonalBeds":"","PITCount":27,"TotalBeds":27,"UtilizationRate":"100%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"CityofUrbana","ProjectName":"TransitionalHousingforHomelessFamilieswithChildren","latitude":40.1102,"longitude":-88.2046,"Address":"400SouthVineStreet,Urbana,IL61801","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":6,"TotalSeasonalBeds":"","PITCount":3,"TotalBeds":6,"UtilizationRate":"50%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"CourageConnection","ProjectName":"Evans/ForbesHomelessFamiliesinTransition","latitude":40.11877,"longitude":-88.23114,"Address":"508EChurchSt,Champaign,IL61820","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":20,"TotalSeasonalBeds":"","PITCount":7,"TotalBeds":20,"UtilizationRate":"35%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"CourageConnection","ProjectName":"UnlimitedPossibilities","latitude":40.11877,"longitude":-88.23114,"Address":"508EChurchSt,Champaign,IL61820","Veteranw/Children":0,"Veteranw/oChildren":"","Year-RoundBeds":10,"TotalSeasonalBeds":"","PITCount":13,"TotalBeds":10,"UtilizationRate":"130%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"C-U@Home","ProjectName":"FamilyHouse","latitude":40.12024,"longitude":-88.23974,"Address":"70EWashingtonSt,Champaign,IL61820","Veteranw/Children":0,"Veteranw/oChildren":"","Year-RoundBeds":4,"TotalSeasonalBeds":"","PITCount":2,"TotalBeds":4,"UtilizationRate":"50%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"C-U@Home","ProjectName":"RecoveryHouse","latitude":40.12024,"longitude":-88.23974,"Address":"70EWashingtonSt,Champaign,IL61820","Veteranw/Children":"","Veteranw/oChildren":0,"Year-RoundBeds":6,"TotalSeasonalBeds":"","PITCount":5,"TotalBeds":6,"UtilizationRate":"83%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"C-U@Home","ProjectName":"StepAboveHouse","latitude":40.12024,"longitude":-88.23974,"Address":"70EWashingtonSt,Champaign,IL61820","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":3,"TotalSeasonalBeds":"","PITCount":3,"TotalBeds":3,"UtilizationRate":"100%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"C-U@Home","ProjectName":"Women\'sHouse","latitude":40.12024,"longitude":-88.23974,"Address":"70EWashingtonSt,Champaign,IL61820","Veteranw/Children":"","Veteranw/oChildren":0,"Year-RoundBeds":2,"TotalSeasonalBeds":"","PITCount":2,"TotalBeds":2,"UtilizationRate":"100%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"GreaterCommunityAIDSProject","ProjectName":"ChampaignHouse","latitude":40.12124,"longitude":-88.24354,"Address":"Champaign,IL61824","Veteranw/Children":"","Veteranw/oChildren":0,"Year-RoundBeds":4,"TotalSeasonalBeds":"","PITCount":1,"TotalBeds":4,"UtilizationRate":"25%"}','{"Year":2019,"Proj.Type":"TH","OrganizationName":"SalvationArmy","ProjectName":"ShelterVoucherProgram","latitude":40.12054,"longitude":-88.2575,"Address":"502NProspectAve,Champaign,IL61820","Veteranw/Children":0,"Veteranw/oChildren":0,"Year-RoundBeds":10,"TotalSeasonalBeds":"","PITCount":10,"TotalBeds":10,"UtilizationRate":"100%"}'];
+        for (var i = 0; i < str.length; i++) {
+          var obj = JSON.parse(str[i]);
+          array.push(obj);
+        }
+      }
+    </script>
+      
+
+
+   
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGquyFCZwrs_aTakxuV8ZM5bH8BQiWQA&callback=initMap"
+    async defer></script>
+
+    
+  </body>
+</html>

@@ -36,6 +36,11 @@ def volunteer():
     message = "Hello, World"
     return render_template('volunteer.html', message=message)
 
+@app.route("/results")
+def results():
+    message = "Hello, World"
+    return render_template('homeless_website.html', message=message)
+
 
 
 # run the application
