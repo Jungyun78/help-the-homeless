@@ -15,19 +15,26 @@ We are a team of four UIUC sophomore students who are determined to apply techno
 
 ## Functionality
 ### Submit a Form about Personal Conditions to Find the Best Fitted Shelters for You
+- Gender
+- Children
+- Disability Status
+- Veteran Status
 
 ### Text/Call C-U at Home for Emergency with Your Device
+Directly text to or call the Emergency line of CU at Home through the website if any emergency housing issue happens. 
 
 ### Donate to C-U at Home if You Want to Support Local Community
+Redirect donors to C-U at Home page to donate to support the life of homeless people.
 
 ### View Data Analysis Charts of Local Homeless Survey
-We included interesting statistical observations and interpretations generated from Point-in-Time Survey conducted by Champaign County in 2018. Sample data distributed three different behavioural patterns. Along with 
+We included interesting statistical observations and interpretations generated from Point-in-Time Survey conducted by Champaign County in 2018.
 
 ###
 
 ## Team
-
-Ana and Rashi worked on front-end, website development. We used Flask as a microframework and used it with Python to load in static HTML, CSS and Javascript files. We also created the UI for the entire project.
+- Rashi Dembi and Ana Park worked on front-end, website development. We used Flask as a microframework and used it with Python to load in static HTML, CSS and Javascript files. We also created the UI for the entire project.
+- Yingan Wang worked on the dataset analysis, protoetyping, and backend development using Python and R.
+- Medha Patil worked on the GoogleMaps API, data visualizaton, and backend development using JavaScripts.
 
 
 ## Reference
