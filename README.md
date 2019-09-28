@@ -15,3 +15,7 @@ We are a team of four UIUC sophomore students who are determined to apply techno
 ## Team
 
 Ana and Rashi worked on front-end, website development. We used Flask as a microframework and used it with Python to load in static HTML, CSS and Javascript files. We also created the UI for the entire project.
+
+
+## Reference
+The github repository to the Champaign County homeless dataset: https://github.com/cudsug/champaign-county-homeless-data
