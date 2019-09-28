@@ -3,16 +3,24 @@
         <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Darker+Grotesque&display=swap"
         rel="stylesheet">
 
+      
         <div class = "logo">
         <img src="/static/images/newlogo.png" alt="Logo" width="10%" height="auto">
         </div>
-        <head hidden>
+        
+        <a href='http://127.0.0.1:5000/about-us' class="button"><button>Welcome!</button></a>
+        <a href='http://127.0.0.1:5000/home'><button>Home</button></a>
+        <a href='http://127.0.0.1:5000/about-us'><button>About Us</button></a>
+        <a href='http://127.0.0.1:5000/datasets'><button>Datasets</button></a>
+        <a href='http://127.0.0.1:5000/donate'><button>Donate</button></a>
+        
+        
         <div class = "banner">
             <center>
             <img src="/static/images/newbanner.png" alt="Banner" width = "105%" height = "auto" >
             </center>
         </div>
-        </head>
+        
         <br>
         <div class = "head">
         <p>Please fill out this questionnaire so we can recommend the best shelter for you.</p>
@@ -71,14 +79,23 @@
                 <!-- Question 4 -->
                 <h2>Are you a veteran?</h2>
                 <!-- Choices for the fourth question -->
-                <label><input type="radio" name="q4" value="c1">
+                <label><input type="radio" name="q4" value="c7">
                     Yes
                     </label><br />
-                <label><input type="radio" name="q4" value="c2">
+                <label><input type="radio" name="q4" value="c8">
                    No
                     </label><br />
         
-                
+        <!-- Question 5 -->
+        <h2>Do you have a disability?</h2>
+        <!-- Choices for the fourth question -->
+        <label><input type="radio" name="q5" value="c9">
+        Yes
+        </label><br />
+        <label><input type="radio" name="q5" value="c10">
+        No
+        </label><br />
+        
                 <button type="submit" id="submit" onclick="tabulateAnswers()">Submit Your Answers</button>
                 <button type="reset" id="reset" onclick="resetAnswer()">Reset</button>
             </form>
@@ -87,14 +104,27 @@
             <div id="answer">Your result will show up here!</div>
         </div>
         <style>
+
+        .button {
+            background-color: transparent;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0,2);
+            border: #e7e7e7;
+            border-style: solid;
+            border-width: 1px;
+            color: transparent;
+        }
+         
+        
+        
             .head {
                 font-size: 150%;
             }
             
             .banner {
                 margin-left: -40px;
-                margin-top: -40px;
+                margin-top: 60px;
             }
+        
             .logo {
                 position:absolute;
                 left:-418;
@@ -106,6 +136,9 @@
             body {
                 background-image: url("/static/images/newestbackground.png");
                 text-align: center;
+                z-index:-5;
+                position: absolute;
+
             }
             h1 {
                 font-family: 'Abril Fatface', cursive;
@@ -113,115 +146,10 @@
             p {
                 font-family: 'Darker Grotesque', sans-serif;
             }
-        .dropbtn {
-            background-color: #3498DB;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
         
-        .dropbtn:hover, .dropbtn:focus {
-            background-color: #2980B9;
-        }
-        
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            overflow: auto;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        
-        .dropdown a:hover {background-color: #ddd;}
-        
-        .show {display: block;}
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        
-        .navbar a {
-            float: left;
-            font-size: 16px;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        
-        .dropdown {
-            float: left;
-            overflow: hidden;
-        }
-        
-        .dropdown .dropbtn {
-            cursor: pointer;
-            font-size: 16px;
-            border: none;
-            outline: none;
-            color: white;
-            padding: 14px 16px;
-            background-color: inherit;
-            font-family: inherit;
-            margin: 0;
-        }
-        
-        .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-            background-color: red;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-        
-        .show {
-            display: block;
-        }
+    
+    
+    
         h2 {
             margin: 5px 0;
         }
@@ -255,8 +183,17 @@
             background: #eee;
             padding: 10px;
         }
+        
+
         </style>
+        </head>
+
+        <body>
+        
         <script>
+     
+    
+        
             // function to calculate the result of the survey
             function tabulateAnswers() {
                 // initialize variables for each choice's score
@@ -315,6 +252,8 @@
             var answerbox = document.getElementById('answer');
             answerbox.innerHTML = "Your result will show up here!";
         }
+        
+
 </script>
-    </head>
+   </body>
     

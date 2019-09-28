@@ -20,22 +20,13 @@ def about():
     message = "Hello, World"
     return render_template('about.html', message=message)
 
-@app.route("/what-do-we-do")
-def what():
-    message = "Hello, World"
-    return render_template('what.html', message=message)
-
 @app.route("/datasets")
 def datasets():
     message = "Hello, World"
     return render_template('datasets.html', message=message)
 
-@app.route("/get-involved")
-def involved():
-    message = "Hello, World"
-    return render_template('donate.html', message=message)
 
-@app.route("/what-do-we-do")
+@app.route("/donate")
 def donate():
     message = "Hello, World"
     return render_template('donate.html', message=message)
