@@ -1,4 +1,4 @@
-# A Shelter Recommendatoin Website for Homeless People in Champaign County, IL
+# A Shelter Recommendation Website for Homeless People in Champaign County, IL
 
 As a Hackathon project in PYGHACK 2019, our website offers recommendations of and directions to shelters for homeless people in Champaign County, IL, tailoring to their personal conditions. Users can access the platform to search for the best shelters for them with any wifi-enabled electronic devices, either in public libraries or on personal devices. 
 
