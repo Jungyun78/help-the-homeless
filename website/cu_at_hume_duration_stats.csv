@@ -1,0 +1,16 @@
+Length of Stay,Number of Men,Number of Nights
+In Days,,
+1-7 Days,157,287
+8-14 Days,28,287
+15-21 Days,23,287
+22-28 Days,13,287
+29-35 Days,8,287
+36-42 Days,8,287
+43-49 Days,7,287
+50-56 Days,7,287
+>56 Days,36,287
+,,
+In Months,,
+1 month or less,221,287
+1-2 months,30,287
+>2 months,36,287
