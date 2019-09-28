@@ -1,0 +1,34 @@
+---
+title: "pyghack"
+author: "Yingan Wang"
+date: "9/27/2019"
+output: html_document
+---
+
+```{r}
+days = read.csv("days.csv")
+list_header = c('week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'week7', 'week8', 'week9', 'week10', 'week11', 'week12', 'week13', 'week14', 'week15', 'week16', 'week17', 'week18', 'week19')
+
+day_stayed = c()
+week_before_homeless = 3 # set week to 3 to represent the time before sudden trainsitions in life
+consecutive_count = 0 # count how many consecutive weeks from the initial week that the observation is not in shelters
+
+
+for (i in 1:nrow(days)) {
+  for (j in 2:length(list_header)+1) {
+    if (days[i,j] == 0) {
+      consecutive_count = consecutive_count + 1
+    }
+  }
+  day_stayed = c(day_stayed, consecutive_count)
+  consecutive_count = 0
+}
+
+days$consec_week = day_stayed
+days = days[days$consec_week > week_before_homeless,]
+days = days[days$total_days_stayed >= 33,]
+days
+write.csv(days, file = "sudden_changes.csv")
+
+        
+```
